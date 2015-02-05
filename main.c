@@ -6,7 +6,7 @@
 /*   By: rbenjami <rbenjami@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/02/03 13:26:01 by rbenjami          #+#    #+#             */
-/*   Updated: 2015/02/04 18:38:52 by rbenjami         ###   ########.fr       */
+/*   Updated: 2015/02/05 17:39:38 by rbenjami         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,9 @@ int		ft_toupper( int c );
 int		ft_tolower( int c );
 int		ft_puts( const char *s );
 int		ft_strlen( const char *s );
+void	*ft_memset( void *b, int c, size_t len );
+void	*ft_memcpy( void *dst, const void *src, size_t n );
+char	*ft_strdup( const char *s1 );
 
 void	print_mem( char *mem, int len )
 {
@@ -72,6 +75,8 @@ int		main( void )
 
 	if ( memcmp( test, test2, 10 ) != 0 )
 	{
+		print_mem( test, 10 );
+		print_mem( test2, 10 );
 		write( 1, "\ntest1 result: " , 16 );
 		write( 1, test , 10 );
 		write( 1, ", expected result: " , 20 );
@@ -79,16 +84,8 @@ int		main( void )
 		printf("\033[31mError\n\033[0m");
 		exit( 0 );
 	}
-
-	write( 1, "\n" , 1 );
-	print_mem( test, 10 );
-	print_mem( test2, 10 );
-	write( 1, "\ntest1: " , 8 );
-	write( 1, test , 10 );
-	write( 1, "\ntest2: " , 8 );
-	write( 1, test2 , 10 );
-	write( 1, "\n" , 1 );
-
+	free( test );
+	free( test2 );
 	printf("\033[32mOk\033[0m\n");
 
 
@@ -104,17 +101,16 @@ int		main( void )
 	ft_strcat( cat_test, cat_test2 );
 	strcat( cat_test3, cat_test2 );
 
-	write( 1, "\n" , 1 );
-	print_mem( cat_test, 10 );
-	print_mem( cat_test3, 10 );
-	write( 1, "\ncat_test: " , 11 );
-	write( 1, cat_test , 10 );
-	write( 1, "\ncat_test2: " , 12 );
-	write( 1, cat_test3 , 10 );
-	write( 1, "\n" , 1 );
-
 	if ( memcmp( cat_test, cat_test3, 10 ) != 0 )
 	{
+		write( 1, "\n" , 1 );
+		print_mem( cat_test, 10 );
+		print_mem( cat_test3, 10 );
+		write( 1, "\ncat_test: " , 11 );
+		write( 1, cat_test , 10 );
+		write( 1, "\ncat_test2: " , 12 );
+		write( 1, cat_test3 , 10 );
+		write( 1, "\n" , 1 );
 		printf("\nresult: %s, expected result: %s\n", cat_test, cat_test3 );
 		printf("\033[31mError\n\033[0m");
 		exit( 0 );
@@ -140,6 +136,9 @@ int		main( void )
 		printf("\033[31mError\n\033[0m");
 		exit( 0 );
 	}
+	free( cat_test );
+	free( cat_test2 );
+	free( cat_test3 );
 	printf("\033[32mOk\n\033[0m");
 
 
@@ -281,6 +280,109 @@ int		main( void )
 	if ( ft_strlen( "abcde" ) != 5 )
 	{
 		printf("\n[%s] -> result: %d, expected result: %d\n", "abcde", ft_strlen( "abcde" ), 5 );
+		printf("\033[31mError\n\033[0m");
+		exit( 0 );
+	}
+	printf("\033[32mOk\n\033[0m");
+
+
+	// FT_MEMSET
+	printf( "--------\nTest ft_memset: " );
+	char		*test_memset1 = strdup( "abcdefghij" );
+	char		*test_memset2 = strdup( "abcdefghij" );
+
+	void	*ret1 = ft_memset( test_memset1, '1', 5 );
+	void	*ret2 = memset( test_memset2, '1', 5 );
+
+	if ( memcmp( test_memset1, test_memset2, 10 ) != 0 )
+	{
+		printf( "\nresult: \n" );
+		print_mem( test_memset1, 10 );
+		printf("\nexpected result: \n");
+		print_mem( test_memset2, 10 );
+		printf("\033[31mError\n\033[0m");
+		exit( 0 );
+	}
+	if ( memcmp( ret1, ret2, 10 ) != 0 )
+	{
+		printf( "\nresult: \n" );
+		print_mem( ret1, 10 );
+		printf("\nexpected result: \n");
+		print_mem( ret2, 10 );
+		printf("\033[31mError\n\033[0m");
+		exit( 0 );
+	}
+	free( test_memset1 );
+	free( test_memset2 );
+	printf("\033[32mOk\n\033[0m");
+
+
+	// FT_MEMCPY
+	printf( "--------\nTest ft_memcpy: " );
+	char		*test_memcpy1 = strdup( "123456789" );
+	char		*test_memcpy2 = strdup( "123456789" );
+
+	char *retcpy1 = ft_memcpy( test_memcpy1, "abcdef", 5 );
+	char *retcpy2 = memcpy( test_memcpy2, "abcdef", 5 );
+
+	if ( memcmp( test_memcpy1, test_memcpy2, 10 ) != 0 )
+	{
+		printf( "\ntest1\nresult: \n" );
+		print_mem( test_memcpy1, 10 );
+		printf("\nexpected result: \n");
+		print_mem( test_memcpy2, 10 );
+		printf("%s\n", test_memcpy1);
+		printf("%s\n", test_memcpy2);
+		printf("\033[31mError\n\033[0m");
+		exit( 0 );
+	}
+	if ( memcmp( retcpy1, retcpy2, 10 ) != 0 )
+	{
+		printf( "\ntest2\nresult: \n" );
+		print_mem( retcpy1, 10 );
+		printf("\nexpected result: \n");
+		print_mem( retcpy2, 10 );
+		printf("%s\n", retcpy1);
+		printf("%s\n", retcpy2);
+		printf("\033[31mError\n\033[0m");
+		exit( 0 );
+	}
+
+	bzero( test_memcpy1, 10 );
+	free( test_memcpy1 );
+	bzero( test_memcpy2, 10 );
+	free( test_memcpy2 );
+	printf("\033[32mOk\n\033[0m");
+
+
+	// FT_STRDUP
+	printf( "--------\nTest ft_strdup: " );
+
+	char	*test_dup1 = ft_strdup( "987654321" );
+	char	*test_dup2 = strdup( "987654321" );
+
+	if ( memcmp( test_dup1, test_dup2, 10 ) != 0 )
+	{
+		printf( "\nresult: \n" );
+		print_mem( test_dup1, 10 );
+		printf("\nexpected result: \n");
+		print_mem( test_dup2, 10 );
+		printf("\033[31mError\n\033[0m");
+		exit( 0 );
+	}
+
+	free( test_dup1 );
+	free( test_dup2 );
+
+	test_dup1 = ft_strdup( "9876\0pok" );
+	test_dup2 = strdup( "9876\0pok" );
+
+	if ( memcmp( test_dup1, test_dup2, 5 ) != 0 )
+	{
+		printf( "\nresult: \n" );
+		print_mem( test_dup1, 5 );
+		printf("\nexpected result: \n");
+		print_mem( test_dup2, 5 );
 		printf("\033[31mError\n\033[0m");
 		exit( 0 );
 	}

@@ -6,7 +6,7 @@
 #    By: rbenjami <rbenjami@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/02/03 14:24:20 by rbenjami          #+#    #+#              #
-#    Updated: 2015/02/04 18:19:11 by rbenjami         ###   ########.fr        #
+#    Updated: 2015/02/05 14:13:18 by rbenjami         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,6 +28,9 @@ SRCS			=	return.s		\
 					ft_tolower.s	\
 					ft_puts.s		\
 					ft_strlen.s		\
+					ft_memset.s		\
+					ft_memcpy.s		\
+					ft_strdup.s		\
 
 OBJS			=	$(SRCS:.s=.o)
 
