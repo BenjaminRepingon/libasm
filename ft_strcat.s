@@ -1,25 +1,24 @@
 section .text
+
 global _ft_strcat
 
 extern _ft_strlen
 
 _ft_strcat:
-	cmp		rsi, 0
-	je		strcat_ret
+	mov		r10, rdi
 	call	_ft_strlen
-	mov		r8, rdi
-	add		r8, rax
+	add		rdi, rax
 
-strcat_cpy_s2_in_s1:
-	mov		byte [r8], 0
+cat_loop2:
 	cmp		byte [rsi], 0
-	je		strcat_ret
-	mov		al, byte [rsi]
-	mov		byte [r8], al
-	inc		r8
+	je		cat_ret
+	mov		rax, [rsi]
+	mov		[rdi], al
+	inc		rdi
 	inc		rsi
-	jmp		strcat_cpy_s2_in_s1
+	jmp		cat_loop2
 
-strcat_ret:
-	mov		rax, rdi
+cat_ret:
+	mov		byte [rdi], 0
+	mov		rax, r10
 	ret
