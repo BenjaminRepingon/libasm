@@ -6,7 +6,7 @@
 /*   By: rbenjami <rbenjami@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/02/11 10:19:15 by rbenjami          #+#    #+#             */
-/*   Updated: 2015/02/13 12:18:58 by rbenjami         ###   ########.fr       */
+/*   Updated: 2015/02/13 13:54:27 by rbenjami         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,5 +29,11 @@ void	*ft_memset( void *b, int c, size_t len );
 void	*ft_memcpy( void *dst, const void *src, size_t n );
 char	*ft_strdup( const char *s1 );
 void	ft_cat( int fd );
+
+char	*ft_strncat( char *s1, const char *s2, size_t n );
+int		ft_isupper( int c );
+int		ft_islower( int c );
+void	*ft_strcpy( void *dst, const void *src );
+void	*ft_strncpy( void *dst, const void *src, size_t n );
 
 #endif

@@ -6,7 +6,7 @@
 #    By: rbenjami <rbenjami@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/02/03 14:24:20 by rbenjami          #+#    #+#              #
-#    Updated: 2015/02/13 12:19:04 by rbenjami         ###   ########.fr        #
+#    Updated: 2015/02/13 13:53:38 by rbenjami         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -33,6 +33,11 @@ SRCS			=	return.s		\
 					ft_strdup.s		\
 					ft_cat.s		\
 					\
+					ft_strncat.s	\
+					ft_isupper.s	\
+					ft_islower.s	\
+					ft_strcpy.s		\
+					ft_strncpy.s	\
 
 OBJS			=	$(SRCS:.s=.o)
 
@@ -61,6 +66,8 @@ re:				fclean all
 
 test: re
 	@cat /dev/urandom | head -n 100 > ./tests/random
+	@touch ./tests/permission
+	@chmod 000 ./tests/permission
 	@gcc -Wl,-no_pie -I. -L. -lfts main.c
 	@./a.out
 
