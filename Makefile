@@ -6,7 +6,7 @@
 #    By: rbenjami <rbenjami@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/02/03 14:24:20 by rbenjami          #+#    #+#              #
-#    Updated: 2015/02/12 17:58:23 by rbenjami         ###   ########.fr        #
+#    Updated: 2015/02/13 12:19:04 by rbenjami         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -33,7 +33,6 @@ SRCS			=	return.s		\
 					ft_strdup.s		\
 					ft_cat.s		\
 					\
-					ft_memcmp.s		\
 
 OBJS			=	$(SRCS:.s=.o)
 
@@ -61,10 +60,13 @@ fclean:			clean
 re:				fclean all
 
 test: re
+	@cat /dev/urandom | head -n 100 > ./tests/random
 	@gcc -Wl,-no_pie -I. -L. -lfts main.c
 	@./a.out
 
-cat: re
-	@gcc -Wl,-no_pie -I. -L. -lfts main_cat.c -o ft_cat
+test_puts: re
+	@./tests/puts.sh
+
+test_cat: re
 
 .PHONY: all, clean, fclean, re

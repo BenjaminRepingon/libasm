@@ -6,7 +6,7 @@
 /*   By: rbenjami <rbenjami@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/02/11 10:19:15 by rbenjami          #+#    #+#             */
-/*   Updated: 2015/02/12 17:58:42 by rbenjami         ###   ########.fr       */
+/*   Updated: 2015/02/13 12:18:58 by rbenjami         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,5 +30,4 @@ void	*ft_memcpy( void *dst, const void *src, size_t n );
 char	*ft_strdup( const char *s1 );
 void	ft_cat( int fd );
 
-int		ft_memcmp( const void *s1, const void *s2, size_t n );
 #endif
