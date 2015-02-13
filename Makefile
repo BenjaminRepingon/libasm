@@ -6,7 +6,7 @@
 #    By: rbenjami <rbenjami@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/02/03 14:24:20 by rbenjami          #+#    #+#              #
-#    Updated: 2015/02/13 13:53:38 by rbenjami         ###   ########.fr        #
+#    Updated: 2015/02/13 14:40:36 by rbenjami         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -65,7 +65,7 @@ fclean:			clean
 re:				fclean all
 
 test: re
-	@cat /dev/urandom | head -n 100 > ./tests/random
+	@cat /dev/urandom | head -n 10 > ./tests/random
 	@touch ./tests/permission
 	@chmod 000 ./tests/permission
 	@gcc -Wl,-no_pie -I. -L. -lfts main.c

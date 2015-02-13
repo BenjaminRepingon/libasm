@@ -1,7 +1,7 @@
 %define		STD_OUT			1
 %define		SYS_READ		0x2000003
 %define		SYS_WRITE		0x2000004
-%define		BUFF_SIZE		1
+%define		BUFF_SIZE		1024
 
 section .text
 

@@ -6,7 +6,7 @@
 /*   By: rbenjami <rbenjami@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/02/03 13:26:01 by rbenjami          #+#    #+#             */
-/*   Updated: 2015/02/13 14:02:46 by rbenjami         ###   ########.fr       */
+/*   Updated: 2015/02/13 14:23:16 by rbenjami         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,8 @@
 
 # include <libfts.h>
 
-# define	MIN				( -42000 )
-# define	MAX				( 50000 )
+# define	MIN				( -4200 )
+# define	MAX				( 5000 )
 # define	STR_MAX_SIZE	( 5000 )
 # define	random(min, max)( ( rand() % ( max - min ) ) + min )
 
